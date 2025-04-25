@@ -9,13 +9,21 @@
     "react-native-web": "~0.19.13"
   },
   "devDependencies": {
+    "@repo/eslint-config": "0.0.0",
+    "@repo/prettier-config": "0.0.0",
     "@repo/typescript-config": "0.0.0",
     "@types/node": "^20.10.6",
     "@types/react": "~18.3.12",
     "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^8.31.0",
+    "@typescript-eslint/parser": "^8.31.0",
     "babel-plugin-react-native-web": "~0.19.13",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.1",
     "eslint-config-next": "14.0.4",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-config-turbo": "latest",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3",
     "typescript": "5.8.2"
   },
   "private": true,

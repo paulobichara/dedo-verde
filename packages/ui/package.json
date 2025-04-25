@@ -6,8 +6,19 @@
     "react-native": "0.76.9"
   },
   "devDependencies": {
+    "@repo/eslint-config": "0.0.0",
+    "@repo/prettier-config": "0.0.0",
     "@repo/typescript-config": "0.0.0",
     "@types/react": "~18.3.12",
+    "@typescript-eslint/eslint-plugin": "^8.31.0",
+    "@typescript-eslint/parser": "^8.31.0",
+    "eslint": "^8.57.1",
+    "eslint-config-expo": "~8.0.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-config-turbo": "latest",
+    "eslint-plugin-prettier": "^5.2.6",
+    "expo": "~52.0.46",
+    "prettier": "^3.5.3",
     "tsup": "^8.0.1",
     "typescript": "5.8.2"
   },
@@ -15,7 +26,8 @@
   "scripts": {
     "build": "tsup",
     "clean": "rm -rf dist",
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "lint": "expo lint"
   },
   "types": "./dist/index.d.ts"
 }
