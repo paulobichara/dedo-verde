@@ -1,22 +1,23 @@
 {
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "clean": "turbo run clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"
-  },
+  "name": "with-react-native-web",
   "devDependencies": {
     "prettier": "^3.1.1",
+    "syncpack": "^13.0.3",
     "turbo": "^2.5.1"
   },
-  "packageManager": "yarn@1.22.19",
   "engines": {
     "node": ">=18"
   },
-  "name": "with-react-native-web"
+  "packageManager": "yarn@1.22.19",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
