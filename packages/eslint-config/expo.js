@@ -1,3 +1,5 @@
+const { rules } = require("eslint-config-prettier");
+
 module.exports = {
   extends: [
     'eslint:recommended', 
@@ -10,4 +12,12 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   root: true,
+  rules: {
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "ignoreCase": true,
+      }
+    ]
+  },
 };
