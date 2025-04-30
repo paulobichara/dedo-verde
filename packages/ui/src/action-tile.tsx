@@ -6,15 +6,18 @@ export interface ButtonProps {
   onClick?: (event: GestureResponderEvent) => void;
 }
 
-export function Button({ text, onClick }: ButtonProps) {
+export function ActionTile({ text, onClick }: ButtonProps) {
   return (
-    <Pressable onPress={onClick} style={styles.button}>
+    <Pressable onPress={onClick} style={styles.container}>
       <Text style={styles.text}>{text}</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   button: {
     maxWidth: 200,
     textAlign: 'center',

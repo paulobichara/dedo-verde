@@ -1,18 +1,22 @@
-module.exports = {
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { withExpo } = require('@expo/next-adapter');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = withExpo({
   reactStrictMode: true,
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      // Transform all direct `react-native` imports to `react-native-web`
-      "react-native$": "react-native-web",
-    };
-    config.resolve.extensions = [
-      ".web.js",
-      ".web.jsx",
-      ".web.ts",
-      ".web.tsx",
-      ...config.resolve.extensions,
-    ];
-    return config;
+  swcMinify: true,
+  transpilePackages: [
+    'react-native',
+    'react-native-web',
+    'expo',
+    'react-native-safe-area-context',
+    'react-native-date-picker',
+    'expo-modules-core',
+    // Add more React Native / Expo packages here...
+  ],
+  experimental: {
+    forceSwcTransforms: true,
   },
-};
+});
+
+module.exports = nextConfig;

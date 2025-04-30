@@ -10,7 +10,7 @@ module.exports = {
   ],
   ignorePatterns: ['/dist/*'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'prettier'],
   root: true,
   rules: {
     "react/jsx-sort-props": [
