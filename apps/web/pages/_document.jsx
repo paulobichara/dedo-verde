@@ -1,6 +1,6 @@
-import { Children } from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { AppRegistry } from 'react-native-web';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
+import React, { Children } from 'react';
+import { AppRegistry } from 'react-native';
 
 // Follows the setup for react-native-web:
 // https://necolas.github.io/react-native-web/docs/setup/#root-element
@@ -11,6 +11,12 @@ const style = `
 html, body, #__next {
   -webkit-overflow-scrolling: touch;
 }
+
+@font-face {
+  src: url("/fonts/Ionicons.ttf");
+  font-family: "Ionicons";
+}
+
 #__next {
   display: flex;
   flex-direction: column;

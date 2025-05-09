@@ -1,19 +1,18 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
-import { Button } from '../../button';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { Colors } from '../../theme/colors';
-import DatePicker from 'react-native-date-picker';
 
 type Props = {
   value?: Date;
   setValue: (newValue?: Date) => void;
-  placeholder?: string;
 };
 
-export const DateInput = ({ placeholder, value, setValue }: Props) => {
+export const DateInput = ({ value, setValue }: Props) => {
   const [isPickerVisible, setIsPickerVisible] = useState(false);
 
-  const onDateChange = (date?: Date) => {
+  const onDateChange = (event: DateTimePickerEvent, date?: Date) => {
     setValue(date);
     setIsPickerVisible(false);
   };
@@ -21,14 +20,18 @@ export const DateInput = ({ placeholder, value, setValue }: Props) => {
   return (
     <View style={styles.inputContainer}>
       <TextInput
-        placeholder={placeholder}
+        onFocus={() => setIsPickerVisible(true)}
+        placeholder="Not specified"
         placeholderTextColor={Colors.gray0}
-        readOnly={true}
         style={styles.input}
         value={value?.toLocaleDateString()}
       />
-      <Button onClick={() => setIsPickerVisible(true)} text="Calendar" />
-      {isPickerVisible && <DatePicker date={value ?? new Date()} modal onConfirm={onDateChange} />}
+      <Pressable onPress={() => setIsPickerVisible(true)}>
+        <Ionicons color="green" name="calendar" size={24} />
+      </Pressable>
+      {isPickerVisible && (
+        <DateTimePicker mode="date" onChange={onDateChange} value={value ?? new Date()} />
+      )}
     </View>
   );
 };

@@ -5,11 +5,10 @@ import { DateInput } from './date-input';
 type Props = {
   label: string;
   value?: Date;
-  placeholder: string;
   setValue: (newValue?: Date) => void;
 };
 
-export const LabeledDateInput = ({ label, value, setValue, placeholder }: Props) => {
+export const LabeledDateInput = ({ label, value, setValue }: Props) => {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>

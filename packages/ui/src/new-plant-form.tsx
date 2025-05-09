@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// import { LabeledDateInput } from './input/labeled-date-input';
 import { LabeledDateInput } from './input/labeled-date-input';
 import { LabeledNumericInput } from './input/labeled-numeric-input';
 import { LabeledTextInput } from './input/labeled-text-input';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export const NewPlantForm = () => {
   const [nickname, setNickname] = useState<string>();
@@ -18,11 +18,12 @@ export const NewPlantForm = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
+        <Ionicons color="green" name="leaf" size={32} />
         <Text style={styles.headerText}>New Plant Form</Text>
       </View>
       <LabeledTextInput
         label="Nickname"
-        placeholder="Strawberry #1"
+        placeholder="Strawberries #1"
         setValue={setNickname}
         value={nickname}
       />
@@ -30,19 +31,17 @@ export const NewPlantForm = () => {
         label="Description"
         multiline={true}
         numberOfLines={3}
-        placeholder="Strawberries planted in soil vase 1 in the backyard. Using mineral nutrients."
+        placeholder="Strawberries planted in soil, vase #1 in the backyard. Using mineral nutrients."
         setValue={setDescription}
         value={description}
       />
       <LabeledDateInput
         label="Germination date"
-        placeholder="Not specified"
         setValue={setGerminationDate}
         value={germinationDate}
       />
       <LabeledDateInput
         label="Last watering date"
-        placeholder="Not specified"
         setValue={setLastWaterDate}
         value={lastWaterDate}
       />
@@ -54,7 +53,6 @@ export const NewPlantForm = () => {
       />
       <LabeledDateInput
         label="Last fertilization date"
-        placeholder="Not specified"
         setValue={setLastFertilizerDate}
         value={lastFertilizerDate}
       />

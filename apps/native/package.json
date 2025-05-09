@@ -4,6 +4,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.1.6",
     "@expo/vector-icons": "^14.0.2",
+    "@react-native-community/datetimepicker": "8.2.0",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "@repo/ui": "0.0.0",
