@@ -1,4 +1,6 @@
 {
+  "name": "web",
+  "version": "1.0.0",
   "dependencies": {
     "@repo/ui": "0.0.0",
     "expo": "~52.0.46",
@@ -21,6 +23,7 @@
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^8.31.0",
     "@typescript-eslint/parser": "^8.31.0",
+    "babel-loader": "^10.0.0",
     "babel-plugin-react-native-web": "~0.19.13",
     "babel-preset-expo": "^13.1.10",
     "eslint": "^8.57.1",
@@ -32,15 +35,13 @@
     "prettier": "^3.5.3",
     "typescript": "5.8.2"
   },
+  "private": true,
   "scripts": {
-    "start": "next dev",
-    "dev": "next dev",
     "android": "expo start --android",
+    "build": "next build",
+    "dev": "next dev",
     "ios": "expo start --ios",
-    "web": "expo start --web",
-    "build": "next build"
-  },
-  "name": "web",
-  "version": "1.0.0",
-  "private": true
+    "start": "next dev",
+    "web": "expo start --web"
+  }
 }

@@ -19,6 +19,13 @@ const nextConfig = withExpo({
   },
   webpack: (config) => {
     config.module.rules.push({
+      test: /\.(js|tsx?)$/,
+      exclude: /node_modules[/\\](?!@react-native-community)/,
+      use: {
+        loader: 'babel-loader',
+      },
+    });
+    config.module.rules.push({
       test: /\.(woff|woff2|ttf|eot|svg)$/,
       loader: 'file-loader',
       options: {

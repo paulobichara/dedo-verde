@@ -1,14 +1,6 @@
 {
   "name": "@repo/ui",
   "version": "0.0.0",
-  "peerDependencies": {
-    "@expo/vector-icons": "^14.0.2",
-    "@react-native-community/datetimepicker": "8.2.0",
-    "react": "18.3.1",
-    "react-native": "0.76.9",
-    "react-native-safe-area-context": "4.12.0",
-    "react-native-web": "~0.19.13"
-  },
   "devDependencies": {
     "@repo/eslint-config": "0.0.0",
     "@repo/prettier-config": "0.0.0",
@@ -26,6 +18,19 @@
     "typescript": "5.8.2"
   },
   "main": "./dist/index.js",
+  "peerDependencies": {
+    "@expo/vector-icons": "^14.0.2",
+    "@react-native-community/datetimepicker": "8.2.0",
+    "react": "18.3.1",
+    "react-native": "0.76.9",
+    "react-native-safe-area-context": "4.12.0",
+    "react-native-web": "~0.19.13"
+  },
+  "peerDependenciesMeta": {
+    "@react-native-community/datetimepicker": {
+      "optional": true
+    }
+  },
   "scripts": {
     "build": "tsup",
     "clean": "rm -rf dist",
