@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
+    color: 'green',
     fontSize: 14,
     padding: 4,
     borderWidth: 1,

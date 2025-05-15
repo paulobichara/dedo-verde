@@ -19,6 +19,7 @@ export const DateInput = ({ error, value, setValue }: Props) =>
 const styles = StyleSheet.create({
     inputValid: {
       fontSize: 14,
+      color: 'green',
       padding: 4,
       borderWidth: 1,
       borderColor: Colors.gray0,
