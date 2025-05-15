@@ -7,9 +7,10 @@ import { Colors } from '../../theme/colors';
 type Props = {
   value?: Date;
   setValue: (newValue?: Date) => void;
+  error?: string;
 };
 
-export const DateInput = ({ value, setValue }: Props) => {
+export const DateInput = ({ error, value, setValue }: Props) => {
   const [isPickerVisible, setIsPickerVisible] = useState(false);
 
   const onDateChange = (event: DateTimePickerEvent, date?: Date) => {
@@ -23,7 +24,7 @@ export const DateInput = ({ value, setValue }: Props) => {
         onFocus={() => setIsPickerVisible(true)}
         placeholder="Not specified"
         placeholderTextColor={Colors.gray0}
-        style={styles.input}
+        style={[styles.input, error ? styles.inputInvalid : styles.inputValid]}
         value={value?.toLocaleDateString()}
       />
       <Pressable onPress={() => setIsPickerVisible(true)}>
@@ -38,7 +39,6 @@ export const DateInput = ({ value, setValue }: Props) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    display: 'flex',
     flexDirection: 'row',
     gap: 8,
   },
@@ -47,6 +47,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 4,
     borderWidth: 1,
+  },
+  inputValid: {
     borderColor: Colors.gray0,
+  },
+  inputInvalid: {
+    borderColor: 'red',
   },
 });

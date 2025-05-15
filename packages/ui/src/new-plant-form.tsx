@@ -5,72 +5,108 @@ import { LabeledDateInput } from './input/labeled-date-input';
 import { LabeledNumericInput } from './input/labeled-numeric-input';
 import { LabeledTextInput } from './input/labeled-text-input';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { IconButton } from './input/icon-button';
 
-export const NewPlantForm = () => {
+interface Props {
+  onCancel: () => void;
+  onSave: () => Promise<void> | void;
+}
+
+export const NewPlantForm = ({ onCancel, onSave }: Props) => {
   const [nickname, setNickname] = useState<string>();
+  const [nicknameError, setNicknameError] = useState<string>();
   const [description, setDescription] = useState<string>();
-  const [germinationDate, setGerminationDate] = useState<Date>();
   const [lastWaterDate, setLastWaterDate] = useState<Date>();
+  const [lastWaterDateError, setLastWaterDateError] = useState<string>();
   const [waterFrequency, setWaterFrequency] = useState<number>();
-  const [lastFertilizerDate, setLastFertilizerDate] = useState<Date>();
-  const [fertilizerFrequency, setFertilizerFrequency] = useState<number>();
+  const [waterFrequencyError, setWaterFrequencyError] = useState<string>();
+
+  const validateInput = () => {
+    let valid = true;
+
+    if (!nickname) {
+      valid = false;
+      setNicknameError('A nickname must be provided');
+    } else {
+      setNicknameError(undefined);
+    }
+
+    if (!lastWaterDate || lastWaterDate > new Date()) {
+      valid = false;
+      setLastWaterDateError('Last watering date must be in the past');
+    } else {
+      setLastWaterDateError(undefined);
+    }
+
+    if (waterFrequency === undefined || waterFrequency <= 0) {
+      valid = false;
+      setWaterFrequencyError('Watering frequency must be a positive number');
+    } else {
+      setWaterFrequencyError(undefined);
+    }
+
+    return valid;
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Ionicons color="green" name="leaf" size={32} />
-        <Text style={styles.headerText}>New Plant Form</Text>
+        <View style={styles.header}>
+          <Ionicons color="green" name="leaf" size={32} />
+          <Text style={styles.headerText}>New Plant Form</Text>
+        </View>
+        <LabeledTextInput
+          error={nicknameError}
+          label="Nickname"
+          placeholder="Strawberries #1"
+          setValue={setNickname}
+          value={nickname}
+        />
+        <LabeledTextInput
+          label="Description"
+          multiline={true}
+          numberOfLines={3}
+          placeholder="Strawberries planted in soil, vase #1 in the backyard. Using mineral nutrients."
+          setValue={setDescription}
+          value={description}
+        />
+        <LabeledDateInput
+          error={lastWaterDateError}
+          label="Last watering date"
+          setValue={setLastWaterDate}
+          value={lastWaterDate}
+        />
+        <LabeledNumericInput
+          error={waterFrequencyError}
+          label="Watering frequency (days)"
+          placeholder="Not specified"
+          setValue={setWaterFrequency}
+          value={waterFrequency}
+        />
+      <View style={styles.buttonsContainer}>
+        <IconButton iconName="close-circle-outline" label="Cancel" onPress={onCancel} />
+        <IconButton iconName="save" label="Save" onPress={() => {
+          if (validateInput()){
+            onSave();
+          }
+        }} />
       </View>
-      <LabeledTextInput
-        label="Nickname"
-        placeholder="Strawberries #1"
-        setValue={setNickname}
-        value={nickname}
-      />
-      <LabeledTextInput
-        label="Description"
-        multiline={true}
-        numberOfLines={3}
-        placeholder="Strawberries planted in soil, vase #1 in the backyard. Using mineral nutrients."
-        setValue={setDescription}
-        value={description}
-      />
-      <LabeledDateInput
-        label="Germination date"
-        setValue={setGerminationDate}
-        value={germinationDate}
-      />
-      <LabeledDateInput
-        label="Last watering date"
-        setValue={setLastWaterDate}
-        value={lastWaterDate}
-      />
-      <LabeledNumericInput
-        label="Watering frequency (days)"
-        placeholder="Not specified"
-        setValue={setWaterFrequency}
-        value={waterFrequency}
-      />
-      <LabeledDateInput
-        label="Last fertilization date"
-        setValue={setLastFertilizerDate}
-        value={lastFertilizerDate}
-      />
-      <LabeledNumericInput
-        label="Fertilization frequency (days)"
-        placeholder="Not specified"
-        setValue={setFertilizerFrequency}
-        value={fertilizerFrequency}
-      />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     gap: 16,
     padding: 24,
+    width: '100%',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 24,
+    paddingBottom: 16,
+    paddingTop: 16,
   },
   header: {
     flexDirection: 'row',
@@ -79,6 +115,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   headerText: {
+    color: 'green',
     fontSize: 24,
   },
 });

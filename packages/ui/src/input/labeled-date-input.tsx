@@ -6,20 +6,27 @@ type Props = {
   label: string;
   value?: Date;
   setValue: (newValue?: Date) => void;
+  error?: string;
 };
 
-export const LabeledDateInput = ({ label, value, setValue }: Props) => {
+export const LabeledDateInput = ({ error, label, value, setValue }: Props) => {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
-      <DateInput setValue={setValue} value={value} />
+      <DateInput error={error} setValue={setValue} value={value} />
+      {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   label: {
+    color: 'green',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  error: {
+    fontSize: 12,
+    color: 'red',
   },
 });

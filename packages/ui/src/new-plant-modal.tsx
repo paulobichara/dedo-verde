@@ -14,7 +14,10 @@ export const NewPlantModal = () => {
           setModalVisible(!modalVisible);
         }}
         visible={modalVisible}>
-        <NewPlantForm />
+        <NewPlantForm
+          onCancel={() => setModalVisible(false)}
+          onSave={() => setModalVisible(false)}
+        />
       </Modal>
       <Pressable onPress={() => setModalVisible(true)} style={[styles.button, styles.buttonOpen]}>
         <Text style={styles.textStyle}>Show Modal</Text>

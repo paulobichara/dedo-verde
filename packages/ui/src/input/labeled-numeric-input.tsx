@@ -7,11 +7,13 @@ type Props = {
   value?: number;
   placeholder: string;
   setValue: (newValue?: number) => void;
+  error?: string;
 };
 
-export const LabeledNumericInput = ({ label, value, setValue, placeholder }: Props) => {
+export const LabeledNumericInput = ({ error, label, value, setValue, placeholder }: Props) => {
   return (
     <LabeledTextInput
+      error={error}
       keyboardType={Platform.OS === 'android' ? 'numeric' : 'number-pad'}
       label={label}
       placeholder={placeholder}
