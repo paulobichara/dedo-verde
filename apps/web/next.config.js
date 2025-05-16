@@ -12,6 +12,7 @@ const nextConfig = withExpo({
     'react-native-safe-area-context',
     'expo-modules-core',
     'react-native-vector-icons',
+    'react-native-paper',
     // Add more React Native / Expo packages here...
   ],
   experimental: {
@@ -25,20 +26,20 @@ const nextConfig = withExpo({
         loader: 'babel-loader',
       },
     });
+
     config.module.rules.push({
-      test: /\.(woff|woff2|ttf|eot|svg)$/,
-      loader: 'file-loader',
-      options: {
-        esModule: false,
-        name: '[name].[ext]',
-        outputPath: 'static/media/fonts/',
-      },
+      test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
+      type: 'asset/resource',
     });
+
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       '@expo/vector-icons': 'react-native-vector-icons',
+      '@react-native-vector-icons/material-design-icons': 'react-native-vector-icons/MaterialIcons',
     };
+
     config.resolve.extensions = ['.web.js', '.web.ts', '.web.tsx', ...config.resolve.extensions];
+
     return config;
   },
 });

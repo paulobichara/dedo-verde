@@ -1,6 +1,5 @@
 import { createElement } from 'react';
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../theme/colors';
 
 type Props = {
   value?: Date;
@@ -22,11 +21,11 @@ const styles = StyleSheet.create({
       color: 'green',
       padding: 4,
       borderWidth: 1,
-      borderColor: Colors.gray0,
-      borderBottomColor: Colors.gray0,
-      borderTopColor: Colors.gray0,
-      borderRightColor: Colors.gray0,
-      borderLeftColor: Colors.gray0,
+      borderColor: 'lightgray',
+      borderBottomColor: 'lightgray',
+      borderTopColor: 'lightgray',
+      borderRightColor: 'lightgray',
+      borderLeftColor: 'lightgray',
     },
     inputInvalid: {
       fontSize: 14,

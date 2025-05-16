@@ -1,6 +1,5 @@
 import React from 'react';
 import { KeyboardTypeOptions, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Colors } from '../theme/colors';
 
 type Props = {
   error?: string;
@@ -32,7 +31,7 @@ export const LabeledTextInput = ({
         numberOfLines={numberOfLines}
         onChangeText={(newValue: string) => setValue(newValue)}
         placeholder={placeholder}
-        placeholderTextColor={Colors.gray0}
+        placeholderTextColor='lightgray'
         style={[styles.input, error ? styles.inputInvalid : styles.inputValid]}
         value={value}
       />
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   inputValid: {
-    borderColor: Colors.gray0,
+    borderColor: 'lightgray',
   },
   inputInvalid: {
     borderColor: 'red',

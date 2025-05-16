@@ -17,6 +17,11 @@ html, body, #__next {
   font-family: "Ionicons";
 }
 
+@font-face {
+  src: url("/fonts/MaterialIcons.ttf");
+  font-family: "MaterialIcons";
+}
+
 #__next {
   display: flex;
   flex-direction: column;

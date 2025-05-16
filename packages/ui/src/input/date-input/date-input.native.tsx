@@ -2,7 +2,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import { Colors } from '../../theme/colors';
 
 type Props = {
   value?: Date;
@@ -23,7 +22,7 @@ export const DateInput = ({ error, value, setValue }: Props) => {
       <TextInput
         onFocus={() => setIsPickerVisible(true)}
         placeholder="Not specified"
-        placeholderTextColor={Colors.gray0}
+        placeholderTextColor='lightgray'
         style={[styles.input, error ? styles.inputInvalid : styles.inputValid]}
         value={value?.toLocaleDateString()}
       />
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   inputValid: {
-    borderColor: Colors.gray0,
+    borderColor: 'lightgray',
   },
   inputInvalid: {
     borderColor: 'red',
