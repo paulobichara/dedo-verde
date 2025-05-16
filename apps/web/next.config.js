@@ -35,7 +35,8 @@ const nextConfig = withExpo({
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       '@expo/vector-icons': 'react-native-vector-icons',
-      '@react-native-vector-icons/material-design-icons': 'react-native-vector-icons/MaterialIcons',
+      '@react-native-vector-icons/material-design-icons':
+        'react-native-vector-icons/MaterialCommunityIcons',
     };
 
     config.resolve.extensions = ['.web.js', '.web.ts', '.web.tsx', ...config.resolve.extensions];

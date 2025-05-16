@@ -1,11 +1,11 @@
+import MaterialIcon from '@expo/vector-icons/MaterialCommunityIcons';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Button, Text, useTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LabeledDateInput } from './input/labeled-date-input';
-import { LabeledNumericInput } from './input/labeled-numeric-input';
-import { LabeledTextInput } from './input/labeled-text-input';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { IconButton } from './input/icon-button';
+import { CustomTextInput } from './input/custom-text-input';
+import { DateInput } from './input/date';
+import { NumericInput } from './input/numeric-input';
 
 interface Props {
   onCancel: () => void;
@@ -20,6 +20,8 @@ export const NewPlantForm = ({ onCancel, onSave }: Props) => {
   const [lastWaterDateError, setLastWaterDateError] = useState<string>();
   const [waterFrequency, setWaterFrequency] = useState<number>();
   const [waterFrequencyError, setWaterFrequencyError] = useState<string>();
+
+  const theme = useTheme();
 
   const validateInput = () => {
     let valid = true;
@@ -49,46 +51,53 @@ export const NewPlantForm = ({ onCancel, onSave }: Props) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Ionicons color="green" name="leaf" size={32} />
-          <Text style={styles.headerText}>New Plant Form</Text>
-        </View>
-        <LabeledTextInput
-          error={nicknameError}
-          label="Nickname"
-          placeholder="Strawberries #1"
-          setValue={setNickname}
-          value={nickname}
-        />
-        <LabeledTextInput
-          label="Description"
-          multiline={true}
-          numberOfLines={3}
-          placeholder="Strawberries planted in soil, vase #1 in the backyard. Using mineral nutrients."
-          setValue={setDescription}
-          value={description}
-        />
-        <LabeledDateInput
-          error={lastWaterDateError}
-          label="Last watering date"
-          setValue={setLastWaterDate}
-          value={lastWaterDate}
-        />
-        <LabeledNumericInput
-          error={waterFrequencyError}
-          label="Watering frequency (days)"
-          placeholder="Not specified"
-          setValue={setWaterFrequency}
-          value={waterFrequency}
-        />
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <View style={styles.header}>
+        <MaterialIcon color={theme.colors.primary} name="sprout" size={32} />
+        <Text variant="titleMedium" style={{ color: theme.colors.onBackground }}>New Plant Form</Text>
+      </View>
+      <CustomTextInput
+        error={nicknameError}
+        label="Nickname"
+        placeholder="Strawberries #1"
+        setValue={setNickname}
+        value={nickname}
+      />
+      <CustomTextInput
+        label="Description"
+        multiline={true}
+        numberOfLines={3}
+        placeholder="Strawberries planted in soil, vase #1 in the backyard. Using mineral nutrients."
+        setValue={setDescription}
+        value={description}
+      />
+      <DateInput
+        error={lastWaterDateError}
+        label="Last watering date"
+        setValue={setLastWaterDate}
+        value={lastWaterDate}
+      />
+      <NumericInput
+        error={waterFrequencyError}
+        label="Watering frequency (days)"
+        placeholder="Not specified"
+        setValue={setWaterFrequency}
+        value={waterFrequency}
+      />
       <View style={styles.buttonsContainer}>
-        <IconButton iconName="close-circle-outline" label="Cancel" onPress={onCancel} />
-        <IconButton iconName="save" label="Save" onPress={() => {
-          if (validateInput()){
-            onSave();
-          }
-        }} />
+        <Button icon="close" mode="outlined" onPress={onCancel}>
+          Cancel
+        </Button>
+        <Button
+          icon="content-save"
+          mode="contained"
+          onPress={() => {
+            if (validateInput()) {
+              onSave();
+            }
+          }}>
+          Save
+        </Button>
       </View>
     </SafeAreaView>
   );
@@ -113,9 +122,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-  },
-  headerText: {
-    color: 'green',
-    fontSize: 24,
   },
 });

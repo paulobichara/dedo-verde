@@ -1,26 +1,29 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialIcon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Tabs } from 'expo-router';
+import { useTheme } from 'react-native-paper';
 
 export default function TabLayout() {
+  const theme = useTheme();
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#ffd33d',
+        tabBarActiveTintColor: theme.colors.primary,
         headerStyle: {
-          backgroundColor: '#25292e',
+          backgroundColor: theme.colors.background,
         },
         headerShadowVisible: false,
-        headerTintColor: '#fff',
+        headerTintColor: theme.colors.onBackground,
         tabBarStyle: {
-          backgroundColor: '#25292e',
+          backgroundColor: theme.colors.background,
         },
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons color={color} name={focused ? 'home-sharp' : 'home-outline'} size={24} />
+          tabBarIcon: ({ color }) => (
+            <MaterialIcon color={color} name='home' size={24} />
           ),
         }}
       />
@@ -29,9 +32,9 @@ export default function TabLayout() {
         options={{
           title: 'About',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons
+            <MaterialIcon
               color={color}
-              name={focused ? 'information-circle' : 'information-circle-outline'}
+              name={focused ? 'information' : 'information-outline'}
               size={24}
             />
           ),

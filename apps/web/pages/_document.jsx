@@ -13,13 +13,8 @@ html, body, #__next {
 }
 
 @font-face {
-  src: url("/fonts/Ionicons.ttf");
-  font-family: "Ionicons";
-}
-
-@font-face {
-  src: url("/fonts/MaterialIcons.ttf");
-  font-family: "MaterialIcons";
+  src: url("/fonts/MaterialCommunityIcons.ttf");
+  font-family: "MaterialCommunityIcons";
 }
 
 #__next {
