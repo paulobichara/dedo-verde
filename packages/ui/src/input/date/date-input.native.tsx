@@ -1,5 +1,5 @@
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import React from 'react';
+import React, { useState } from 'react';
 import { BaseDateInput } from './base-date-input';
 
 type Props = {
@@ -11,16 +11,28 @@ type Props = {
 };
 
 export const DateInput = (props: Props) => {
+  const [isPickerVisible, setIsPickerVisible] = useState(false);
+
   const { setValue, value } = props;
 
   const onDateChange = (_: DateTimePickerEvent, date?: Date) => {
+    setIsPickerVisible(false);
     setValue(date);
   };
 
   return (
     <BaseDateInput
       {...props}
-      picker={<DateTimePicker mode="date" onChange={onDateChange} value={value ?? new Date()} />}
+      isPickerVisible={isPickerVisible}
+      picker={
+        <DateTimePicker
+          mode="date"
+          onChange={onDateChange}
+          onTouchCancel={() => setIsPickerVisible(false)}
+          value={value ?? new Date()}
+        />
+      }
+      setIsPickerVisible={setIsPickerVisible}
     />
   );
 };

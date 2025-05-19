@@ -1,39 +1,46 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import { View } from 'react-native';
 import { HelperText, TextInput } from 'react-native-paper';
 
 type Props = {
   error?: string;
+  isPickerVisible: boolean;
   label: string;
   picker?: ReactNode;
   placeholder?: string;
   readonly?: boolean;
   renderPicker?: () => void;
+  setIsPickerVisible?: (isVisible: boolean) => void;
   setValue: (newValue?: Date) => void;
   value?: Date;
 };
 
 export const BaseDateInput = ({
   error,
+  isPickerVisible,
   label,
   picker,
   placeholder,
-  readonly,
   renderPicker,
+  setIsPickerVisible,
   value,
 }: Props) => {
+  const renderVisiblePicker = () => {
+    setIsPickerVisible?.(true);
+    renderPicker?.();
+  };
 
   return (
     <View>
       <TextInput
         label={label}
-        onFocus={renderPicker}
+        onFocus={renderVisiblePicker}
         placeholder={placeholder}
-        readOnly={readonly}
-        right={<TextInput.Icon icon="calendar" onPress={renderPicker} />}
+        right={<TextInput.Icon icon="calendar" />}
+        showSoftInputOnFocus={false}
         value={value?.toLocaleDateString()}
       />
-      {picker}
+      {isPickerVisible && picker}
       {error && <HelperText type="error">{error}</HelperText>}
     </View>
   );

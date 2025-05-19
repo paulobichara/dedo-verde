@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
-import { BaseDateInput } from './base-date-input';
 import moment from 'moment-timezone';
+import React, { ChangeEvent, useRef } from 'react';
+import { BaseDateInput } from './base-date-input';
 
 moment.tz.setDefault();
 
@@ -18,8 +18,8 @@ export const DateInput = (props: Props) => {
   const { setValue } = props;
 
   const onDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(moment(event.target.value).toDate())
-  }
+    setValue(moment(event.target.value).toDate());
+  };
 
   const renderPicker = () => {
     if (dateInputRef.current) {
@@ -30,12 +30,15 @@ export const DateInput = (props: Props) => {
   return (
     <BaseDateInput
       {...props}
-      picker={<input
-        type="date"
-        ref={dateInputRef}
-        style={{ visibility: 'hidden' }}
-        onChange={onDateChange}
-      />}
+      isPickerVisible={true}
+      picker={
+        <input
+          onChange={onDateChange}
+          ref={dateInputRef}
+          style={{ visibility: 'hidden' }}
+          type="date"
+        />
+      }
       renderPicker={renderPicker}
     />
   );
