@@ -54,7 +54,7 @@ export const NewPlantForm = ({ onCancel, onSave }: Props) => {
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.header}>
         <MaterialIcon color={theme.colors.primary} name="sprout" size={32} />
-        <Text variant="titleMedium" style={{ color: theme.colors.onBackground }}>New Plant Form</Text>
+        <Text variant="titleLarge">New Plant Form</Text>
       </View>
       <CustomTextInput
         error={nicknameError}
@@ -105,8 +105,9 @@ export const NewPlantForm = ({ onCancel, onSave }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 16,
-    padding: 24,
+    flex: 1,
+    gap: 24,
+    padding: 16,
     width: '100%',
   },
   buttonsContainer: {
@@ -122,5 +123,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
+    padding: 16,
   },
 });

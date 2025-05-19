@@ -1,40 +1,42 @@
-import { createElement } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { ChangeEvent, useRef, useState } from 'react';
+import { BaseDateInput } from './base-date-input';
+import moment from 'moment-timezone';
+
+moment.tz.setDefault();
 
 type Props = {
-  value?: Date;
-  setValue: (newValue?: Date) => void;
   error?: string;
+  label: string;
+  placeholder?: string;
+  setValue: (newValue?: Date) => void;
+  value?: Date;
 };
 
-export const DateInput = ({ error, value, setValue }: Props) =>
-  createElement('input', {
-    type: 'date',
-    value,
-    onChange: setValue,
-    style: error ? styles.inputInvalid : styles.inputValid
-  });
+export const DateInput = (props: Props) => {
+  const dateInputRef = useRef<HTMLInputElement>(null);
 
-const styles = StyleSheet.create({
-    inputValid: {
-      fontSize: 14,
-      color: 'green',
-      padding: 4,
-      borderWidth: 1,
-      borderColor: 'lightgray',
-      borderBottomColor: 'lightgray',
-      borderTopColor: 'lightgray',
-      borderRightColor: 'lightgray',
-      borderLeftColor: 'lightgray',
-    },
-    inputInvalid: {
-      fontSize: 14,
-      padding: 4,
-      borderWidth: 1,
-      borderColor: 'red',
-      borderBottomColor: 'red',
-      borderTopColor: 'red',
-      borderRightColor: 'red',
-      borderLeftColor: 'red',
-    },
-})
+  const { setValue } = props;
+
+  const onDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(moment(event.target.value).toDate())
+  }
+
+  const renderPicker = () => {
+    if (dateInputRef.current) {
+      dateInputRef.current.showPicker();
+    }
+  };
+
+  return (
+    <BaseDateInput
+      {...props}
+      picker={<input
+        type="date"
+        ref={dateInputRef}
+        style={{ visibility: 'hidden' }}
+        onChange={onDateChange}
+      />}
+      renderPicker={renderPicker}
+    />
+  );
+};
