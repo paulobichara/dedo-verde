@@ -1,0 +1,39 @@
+version: "3.4"
+
+services:
+  dedoverde_postgres:
+    image: postgres:17.5
+    container_name: dedoverde_postgres
+    networks:
+      - dedoverde_network
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=dedoverde_db
+      - POSTGRES_USER=dedoverde_db_user
+      - POSTGRES_PASSWORD=password
+      - TZ=UTC
+
+  dedoverde_pgadmin:
+    image: dpage/pgadmin4
+    container_name: dedoverde_pgadmin
+    networks:
+      - dedoverde_network
+    volumes:
+      - ./pgadmin4/servers.json:/pgadmin4/servers.json
+    ports:
+      - "5433:80"
+    depends_on:
+      - "dedoverde_postgres"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_DISABLE_POSTFIX: true
+      PGADMIN_REPLACE_SERVERS_ON_STARTUP: true
+
+networks:
+  dedoverde_network:
+    name: dedoverde_network
+    driver: bridge
+    ipam:
+      driver: default

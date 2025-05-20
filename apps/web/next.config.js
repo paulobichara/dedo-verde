@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { withExpo } = require('@expo/next-adapter');
+const { loadEnvConfig } = require('@next/env');
+
+const projectDir = process.cwd();
+loadEnvConfig(projectDir);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withExpo({

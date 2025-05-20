@@ -9,7 +9,8 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": ["NODE_ENV", "AUTH_SECRET", "OKTA_CLIENT_ID", "OKTA_CLIENT_SECRET", "OKTA_ISSUER"]
     },
     "lint": {},
     "clean": {
