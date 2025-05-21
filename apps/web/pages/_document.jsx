@@ -1,5 +1,6 @@
+import StyledComponentsRegistry from '@/lib/registry';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
-import React, { Children } from 'react';
+import { Children } from 'react';
 import { AppRegistry } from 'react-native';
 
 // Follows the setup for react-native-web:
@@ -54,8 +55,10 @@ export default class MyDocument extends Document {
       <Html style={{ height: '100%' }}>
         <Head />
         <body style={{ height: '100%', overflow: 'hidden' }}>
-          <Main />
-          <NextScript />
+          <StyledComponentsRegistry>
+            <Main />
+            <NextScript />
+          </StyledComponentsRegistry>
         </body>
       </Html>
     );

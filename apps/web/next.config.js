@@ -7,6 +7,9 @@ loadEnvConfig(projectDir);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withExpo({
+  compiler: {
+    styledComponents: true,
+  },
   reactStrictMode: true,
   transpilePackages: [
     'react-native',
