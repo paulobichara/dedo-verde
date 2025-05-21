@@ -1,16 +1,13 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { NewPlantModal } from '@repo/ui';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StyleSheet, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <Text style={styles.text}>Welcome to Expo + Next.js 👋</Text>
-        <NewPlantModal />
-      </View>
-    </SafeAreaProvider>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>Welcome to Expo + Next.js 👋</Text>
+      <NewPlantModal />
+    </SafeAreaView>
   );
 }
 
