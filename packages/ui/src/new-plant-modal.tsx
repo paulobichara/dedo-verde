@@ -11,14 +11,17 @@ export const NewPlantModal = () => {
   return (
     <SafeAreaView style={styles.centeredView}>
       <Portal>
-        <Modal style={{ backgroundColor: theme.colors.background }} visible={modalVisible} onDismiss={() => setModalVisible(false)}>
+        <Modal
+          onDismiss={() => setModalVisible(false)}
+          style={{ backgroundColor: theme.colors.background }}
+          visible={modalVisible}>
           <NewPlantForm
             onCancel={() => setModalVisible(false)}
             onSave={() => setModalVisible(false)}
           />
         </Modal>
       </Portal>
-      <Button style={{marginTop: 30}} onPress={() => setModalVisible(true)}>
+      <Button onPress={() => setModalVisible(true)} style={{ marginTop: 30 }}>
         Show
       </Button>
     </SafeAreaView>
